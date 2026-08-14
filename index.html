@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="A smartphone-instrumented rollator walker for collecting sidewalk navigation demonstrations without a robot, the UNI-Sidewalk dataset, and an on-robot deployment.">
+  <meta name="keywords" content="sidewalk navigation, mobile robotics, demonstration data, assistive mobility">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UNI: Collecting Sidewalk Navigation Demonstrations Without a Robot</title>
+
+  <!-- No analytics, no third-party fonts, no CDNs: every asset below is served from this repo. -->
+  <link rel="stylesheet" href="./static/css/fonts.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="./static/js/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- The template navbar is omitted: every item in it is a link to an author or lab page. -->
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- TODO: confirm the final paper title. -->
+          <h1 class="title is-1 publication-title">UNI: Collecting Sidewalk Navigation Demonstrations Without a Robot</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Under review at ICRA 2027</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="content">
+              <p>
+                Code, dataset, and hardware specification will be released upon acceptance.
+              </p>
+            </div>
+            <!-- Paper / data / code buttons go here for the camera-ready. A linked PDF must
+                 have its document properties stripped first (LaTeX embeds author fields). -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- TODO: replace with the real teaser. -->
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">UNI</span> is an instrumented rollator walker that collects sidewalk
+        navigation demonstrations with a smartphone, no robot required.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: replace the two paragraphs below with the paper abstract, verbatim. -->
+          <p>
+            Learning sidewalk navigation from demonstration is bottlenecked by the cost of
+            collecting demonstrations, which conventionally requires teleoperating a robot through
+            public pedestrian space. We remove the robot from the data collection loop.
+          </p>
+          <p>
+            <span class="dnerf">UNI</span> is a rollator walker instrumented with a consumer
+            smartphone, which an operator pushes along ordinary sidewalks. Each session records RGB
+            video, LiDAR depth, and device pose, from which we recover metric waypoints in the
+            robot's frame of reference. We use it to collect
+            <span class="dnerf">UNI-Sidewalk</span>, a corpus of sidewalk navigation
+            demonstrations, and we deploy a policy trained on that corpus on a physical robot.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Method video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="content">
+          <!-- TODO: replace with the real method video. Local file, not a YouTube embed:
+               an embed logs every reviewer's request to a third party. -->
+          <video id="method-video" controls muted playsinline width="100%">
+            <source src="./static/videos/method.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--/ Method video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Feasibility filter. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">The feasibility filter</h2>
+        <div class="content has-text-justified">
+          <p>
+            A pedestrian and a wheeled base do not see the same sidewalk. At the intersection below,
+            the pedestrian route crosses a curb that the walker cannot; the walker route diverges to
+            the curb ramp. Demonstrations collected on wheels inherit this constraint for free,
+            which is what makes a walker a better data collection platform than a person with a
+            head-mounted camera.
+          </p>
+          <!-- TODO: replace with the real figure. This is the paper's keystone argument, so it is
+               worth rendering at full width and captioning precisely. -->
+          <img src="./static/images/feasibility_filter.png"
+               alt="One intersection: the route taken by the walker diverges from the pedestrian route at a curb."/>
+          <p class="has-text-centered">
+            <!-- TODO: caption. State which route is which, and what the divergence point is. -->
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Feasibility filter. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Dataset. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">The UNI-Sidewalk dataset</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <!-- TODO: one or two sentences on what the corpus covers. No numbers until they are
+                 final, and no collection date promises. -->
+          </p>
+        </div>
+
+        <!-- TODO: fill in from confirmed numbers only. Leave a dash rather than an estimate;
+             the corpus is still growing and a number that moves is worse than no number. -->
+        <table class="table is-fullwidth is-striped is-narrow">
+          <tbody>
+            <tr><td>Distance</td><td>&mdash;</td></tr>
+            <tr><td>Duration</td><td>&mdash;</td></tr>
+            <tr><td>Sessions</td><td>&mdash;</td></tr>
+            <tr><td>Locations</td><td>Two major US cities</td></tr>
+            <tr><td>Surface types</td><td>&mdash;</td></tr>
+            <tr><td>Operators</td><td>&mdash;</td></tr>
+            <tr><td>Times of day</td><td>&mdash;</td></tr>
+            <tr><td>Weather conditions</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="title is-4">Sample sessions</h3>
+        <div class="content has-text-justified">
+          <p>
+            Each session below shows the RGB stream, the LiDAR depth stream, and the recovered
+            metric waypoints overlaid on the trajectory. Faces and license plates are blurred; the
+            blurring is automated and misses some truncated, occluded, and side-profile faces.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sample sessions carousel, full-bleed like the template's results carousel. -->
+  <div class="hero-body">
+    <div class="container">
+      <!-- TODO: replace with three to five real sessions. -->
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-session-01">
+          <video poster="" id="session-01" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/session_01.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-session-02">
+          <video poster="" id="session-02" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/session_02.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-session-03">
+          <video poster="" id="session-03" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/session_03.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- Downloadable subset. Add the button here once a subset is actually ready to serve;
+             a reviewer who can open real data trusts the corpus far more than one reading a
+             table. Host the file in this repo or on an anonymous host, and strip metadata first. -->
+      </div>
+    </div>
+    <!--/ Dataset. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Deployment. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">On-robot deployment</h2>
+        <div class="content has-text-justified">
+          <p>
+            A policy trained on <span class="dnerf">UNI-Sidewalk</span> running on a physical robot.
+            This is a feasibility demonstration that the recovered waypoints transfer to a robot,
+            not a benchmark: there is no baseline comparison and no success-rate claim here.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content">
+              <h3 class="title is-5">Wheelchair base</h3>
+              <!-- TODO: replace with the real deployment video. -->
+              <video id="deploy-wheelchair" controls muted loop playsinline width="100%">
+                <source src="./static/videos/deploy_wheelchair.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content">
+              <h3 class="title is-5">Quadruped</h3>
+              <!-- TODO: replace, or delete this column if quadruped footage is not cleared. -->
+              <video id="deploy-quadruped" controls muted loop playsinline width="100%">
+                <source src="./static/videos/deploy_quadruped.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Deployment. -->
+
+    <!-- Hardware. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Hardware</h2>
+        <div class="content has-text-justified">
+          <p>
+            <!-- TODO: one or two sentences on the build. Total cost goes here once confirmed. -->
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <!-- TODO: replace with a hardware photo shot against a neutral background.
+                 Do not reuse a photo taken inside the lab. -->
+            <img src="./static/images/hardware.jpg"
+                 alt="The instrumented rollator walker."/>
+          </div>
+          <div class="column is-half">
+            <!-- TODO: fill in components and cost. Name generic part categories rather than any
+                 internally-built tool or app. -->
+            <table class="table is-fullwidth is-striped is-narrow">
+              <thead>
+                <tr><th>Component</th><th>Cost</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Rollator walker</td><td>&mdash;</td></tr>
+                <tr><td>Smartphone (RGB + LiDAR)</td><td>&mdash;</td></tr>
+                <tr><td>Mount</td><td>&mdash;</td></tr>
+                <tr><td>Total</td><td>&mdash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Hardware. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{anonymous2027uni,
+  author    = {Anonymous Authors},
+  title     = {UNI: Collecting Sidewalk Navigation Demonstrations Without a Robot},
+  booktitle = {Under review at the IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2027},
+  note      = {Anonymous submission},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
