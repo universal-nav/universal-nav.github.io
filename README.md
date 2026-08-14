@@ -26,13 +26,13 @@ tools/scrub-media.sh path/to/asset.jpg path/to/asset.mp4
 
 ## Placeholder assets
 
-The files under `static/videos/` and `static/images/` are generated grey
-placeholders labelled `PLACEHOLDER`, present only so the layout can be
-reviewed. Every one must be replaced before publishing:
+`static/videos/teaser.mp4` is real footage. The remaining files under
+`static/videos/` and `static/images/` are generated grey placeholders labelled
+`PLACEHOLDER`, present only so the layout can be reviewed. Each must be
+replaced before publishing:
 
 | File | Purpose |
 | --- | --- |
-| `static/videos/teaser.mp4` | Hero teaser |
 | `static/videos/method.mp4` | Method video |
 | `static/videos/session_01..03.mp4` | Sample sessions (3&ndash;5 total) |
 | `static/videos/deploy_wheelchair.mp4` | Deployment, wheelchair base |
