@@ -59,7 +59,10 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
+      <!-- poster is frame 0 of the video, so there is no visual jump when playback
+           starts, and something is on screen if a browser refuses to autoplay. -->
+      <video id="teaser" autoplay muted loop playsinline preload="auto"
+             poster="./static/images/teaser_poster.jpg" height="100%">
         <source src="./static/videos/teaser.mp4"
                 type="video/mp4">
       </video>
