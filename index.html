@@ -294,22 +294,54 @@
             <img src="./static/images/hardware.jpg"
                  alt="The instrumented rollator walker."/>
           </div>
-          <div class="column is-half">
-            <!-- TODO: fill in components and cost. Name generic part categories rather than any
-                 internally-built tool or app. -->
-            <table class="table is-fullwidth is-striped is-narrow">
-              <thead>
-                <tr><th>Component</th><th>Cost</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Rollator walker</td><td>&mdash;</td></tr>
-                <tr><td>Smartphone (RGB + LiDAR)</td><td>&mdash;</td></tr>
-                <tr><td>Mount</td><td>&mdash;</td></tr>
-                <tr><td>Total</td><td>&mdash;</td></tr>
-              </tbody>
-            </table>
-          </div>
         </div>
+
+        <!-- Bill of materials. -->
+        <h3 class="title is-4">Bill of materials</h3>
+        <div class="content has-text-justified">
+          <p>
+            Every part is off-the-shelf and needs no machining or custom electronics. The
+            smartphone is whatever LiDAR-equipped handset the operator already carries, so it is
+            listed as a build requirement but left out of the total: the figure below is what it
+            costs to turn a phone you own into a capture rig. Product links are stripped of
+            tracking parameters and point at the bare catalogue entry. Listed prices are what each
+            listing showed on <time datetime="2026-09-12">12 September 2026</time>, before tax and
+            shipping; they are a snapshot, not a quote, and retail prices move.
+          </p>
+        </div>
+
+        <table class="table is-fullwidth is-striped is-narrow">
+          <thead>
+            <tr><th>Component</th><th>Item</th><th>Cost</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rollator walker</td>
+              <td><a href="https://www.amazon.com/dp/B0B3XBNTQX"
+                     rel="noopener noreferrer">Helavo all-terrain rollator walker,
+                  12&Prime; pneumatic tires, foldable, 300&nbsp;lb capacity</a></td>
+              <td>$229.90</td>
+            </tr>
+            <tr>
+              <td>Phone mount</td>
+              <td><a href="https://www.amazon.com/dp/B0BN551HR2"
+                     rel="noopener noreferrer">Lamicall 1s-lock handlebar phone mount,
+                  camera-friendly, 4.7&ndash;7&Prime; phones</a></td>
+              <td>$21.99</td>
+            </tr>
+            <tr>
+              <td>Smartphone (RGB + LiDAR)</td>
+              <td>Consumer smartphone with a rear LiDAR scanner</td>
+              <td>Operator-supplied</td>
+            </tr>
+            <tr>
+              <th>Total</th>
+              <th>Excluding the smartphone</th>
+              <th>$251.89</th>
+            </tr>
+          </tbody>
+        </table>
+        <!--/ Bill of materials. -->
       </div>
     </div>
     <!--/ Hardware. -->
