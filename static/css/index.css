@@ -8,9 +8,17 @@ body {
     color: #000;
 }
 
-.link-block a {
+.link-block a,
+.link-block .button {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+/* The dataset button is a placeholder until the release, so it is a plain
+   <span> with no href: keep the button metrics but drop the click affordance. */
+.link-block .button[aria-disabled="true"] {
+    cursor: default;
+    opacity: 0.65;
 }
 
 .dnerf {
@@ -154,4 +162,23 @@ body {
 }
 #interpolation-image-wrapper img {
   border-radius: 5px;
+}
+
+
+/* Footnote lines under tables. Bulma gives a bare <p> no bottom margin, so
+   without this they collide with the next heading. */
+p.is-size-7.has-text-grey {
+  margin-bottom: 1.75rem;
+}
+
+
+/* Hero link buttons. Bulma gives adjacent buttons no gap outside a .buttons
+   wrapper, and .link-block only sets vertical margin, so they would touch. */
+.publication-links {
+  margin-bottom: 1.5rem;
+}
+
+.publication-links .link-block {
+  display: inline-block;
+  margin: 0 0.25rem;
 }

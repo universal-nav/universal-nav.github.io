@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="A smartphone-instrumented rollator walker for collecting sidewalk navigation demonstrations without a robot, the UNI-Sidewalk dataset, and an on-robot deployment.">
-  <meta name="keywords" content="sidewalk navigation, mobile robotics, demonstration data, assistive mobility">
+        content="UNI is a robot-free navigation data collection paradigm: a commercial four-wheeled rollator walker and a LiDAR smartphone collect physically constrained human demonstrations, yielding 37.2 km of metric navigation supervision for wheeled robots.">
+  <meta name="keywords" content="visual navigation, robot-free data collection, wheeled robots, demonstration data, assistive mobility">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UNI: Collecting Sidewalk Navigation Demonstrations Without a Robot</title>
+  <title>UNI: Robot-Free Data for Wheeled Robot Navigation</title>
 
   <!-- No analytics, no third-party fonts, no CDNs: every asset below is served from this repo. -->
   <link rel="stylesheet" href="./static/css/fonts.css">
@@ -32,8 +32,10 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <!-- TODO: confirm the final paper title. -->
-          <h1 class="title is-1 publication-title">UNI: Collecting Sidewalk Navigation Demonstrations Without a Robot</h1>
+          <h1 class="title is-1 publication-title">
+            <span class="dnerf">Universal Navigation Interface</span>:<br>
+            Robot-Free Data for Wheeled Robot Navigation
+          </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous Authors</span>
           </div>
@@ -42,15 +44,40 @@
           </div>
 
           <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- The PDF is the submitted manuscript with its document properties
+                   stripped by tools/scrub-pdf.py. Re-run that after every re-upload:
+                   LaTeX rewrites the Info dictionary each build. -->
+              <span class="link-block">
+                <a href="./static/paper/universal-navigation-interface.pdf"
+                   target="_blank" rel="noopener"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#bom" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-tools"></i></span>
+                  <span>Hardware &amp; BOM</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <span class="external-link button is-normal is-rounded is-dark" aria-disabled="true">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Dataset (coming soon)</span>
+                </span>
+              </span>
+              <!-- Code and data buttons go here for the camera-ready. -->
+            </div>
             <div class="content">
               <p>
-                Code, dataset, and hardware specification are withheld while the paper is
-                under review, since releasing them now would identify the authors. All
-                three will be released once the review process concludes.
+                The collection app source, the data-processing pipeline, the trained model
+                weights, and the privacy-processed dataset are withheld while the paper is under
+                review, since releasing them now would identify the authors. All four will be
+                released once the review process concludes.
               </p>
             </div>
-            <!-- Paper / data / code buttons go here for the camera-ready. A linked PDF must
-                 have its document properties stripped first (LaTeX embeds author fields). -->
           </div>
         </div>
       </div>
@@ -69,8 +96,8 @@
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">UNI</span> is an instrumented rollator walker that collects sidewalk
-        navigation demonstrations with a smartphone, no robot required.
+        <span class="dnerf">UNI</span> collects wheeled-feasible navigation data without a robot,
+        using a rollator and a smartphone.
       </h2>
     </div>
   </div>
@@ -79,24 +106,28 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+    <!-- Abstract. Paper abstract, verbatim. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <!-- TODO: replace the two paragraphs below with the paper abstract, verbatim. -->
           <p>
-            Learning sidewalk navigation from demonstration is bottlenecked by the cost of
-            collecting demonstrations, which conventionally requires teleoperating a robot through
-            public pedestrian space. We remove the robot from the data collection loop.
-          </p>
-          <p>
-            <span class="dnerf">UNI</span> is a rollator walker instrumented with a consumer
-            smartphone, which an operator pushes along ordinary sidewalks. Each session records RGB
-            video, LiDAR depth, and device pose, from which we recover metric waypoints in the
-            robot's frame of reference. We use it to collect
-            <span class="dnerf">UNI-Sidewalk</span>, a corpus of sidewalk navigation
-            demonstrations, and we deploy a policy trained on that corpus on a physical robot.
+            Collecting real-world navigation data for mobile robots typically requires
+            platform-specific teleoperation, making large-scale collection expensive and difficult
+            to scale. We introduce <span class="dnerf">Universal Navigation Interface</span>
+            (<span class="dnerf">UNI</span>), a robot-free data collection paradigm that uses a
+            four-wheeled rollator walker (rollator) and smartphone to collect physically
+            constrained human demonstrations. Because the rollator cannot climb stairs, negotiate
+            uncut curbs, or pass through narrow gaps, demonstrations are naturally biased toward
+            wheeled-feasible routes. Using <span class="dnerf">UNI</span>, we collect 37.2&nbsp;km
+            of real-world navigation data and recover metric trajectories that directly supervise
+            goal-conditioned navigation models. Fine-tuning visual-navigation models on
+            <span class="dnerf">UNI</span> reduces trajectory prediction error by
+            17.4&ndash;24.8% on held-out <span class="dnerf">UNI</span> demonstrations. Evaluation
+            on other navigation datasets shows benefits that vary by dataset and metric. We further
+            demonstrate closed-loop transfer to a powered wheelchair in curb, staircase, and
+            curb-cut scenarios. These results support low-cost physical proxies as a practical
+            source of navigation supervision collected without the target robot.
           </p>
         </div>
       </div>
@@ -125,181 +156,88 @@
 <section class="section">
   <div class="container is-max-desktop">
 
-    <!-- Feasibility filter. -->
+    <!-- System. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">The feasibility filter</h2>
+        <h2 class="title is-3">How UNI works</h2>
+
+        <h3 class="title is-5">1. A commercial rollator, no custom fabrication</h3>
         <div class="content has-text-justified">
           <p>
-            A pedestrian and a wheeled base do not see the same sidewalk. At the intersection below,
-            the pedestrian route crosses a curb that the walker cannot; the walker route diverges to
-            the curb ramp. Demonstrations collected on wheels inherit this constraint for free,
-            which is what makes a walker a better data collection platform than a person with a
-            head-mounted camera.
-          </p>
-          <!-- TODO: replace with the real figure. This is the paper's keystone argument, so it is
-               worth rendering at full width and captioning precisely. -->
-          <img src="./static/images/feasibility_filter.png"
-               alt="One intersection: the route taken by the walker diverges from the pedestrian route at a curb."/>
-          <p class="has-text-centered">
-            <!-- TODO: caption. State which route is which, and what the divergence point is. -->
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Feasibility filter. -->
-
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <!-- Dataset. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">The UNI-Sidewalk dataset</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            <!-- TODO: one or two sentences on what the corpus covers. No numbers until they are
-                 final, and no collection date promises. -->
+            The collection rig is an off-the-shelf four-wheeled rollator walker with a standard
+            handlebar phone mount. It takes about 30 minutes to assemble, costs roughly $250
+            excluding the smartphone, and needs no 3D-printed parts, custom-fabricated hardware, or
+            platform-specific instrumentation. The operator pushes it with all four wheels on the
+            ground, favouring ramps and curb cuts over stairs and uncut curbs, while its width
+            constrains passage through narrow gaps. Full
+            <a href="#bom">bill of materials below</a>.
           </p>
         </div>
 
-        <!-- TODO: fill in from confirmed numbers only. Leave a dash rather than an estimate;
-             the corpus is still growing and a number that moves is worse than no number. -->
+        <h3 class="title is-5">2. One phone, all the streams</h3>
+        <div class="content has-text-justified">
+          <p>
+            <!-- The paper names the iOS app. Left unnamed here per ANONYMITY.md, which bars app
+                 names attributable to the authors. Restore the name in the camera-ready. -->
+            A custom iOS app records calibrated multimodal sensor streams on a LiDAR-equipped
+            iPhone, so no separate sensors have to be integrated or synchronized. Any
+            LiDAR-equipped iPhone works; an iPhone 16 Pro was used for consistency across all
+            collection sessions. All streams share a monotonic clock and are stored in MCAP; RGB,
+            depth, and VIO poses are synchronized at the ARKit-frame level. Focal lengths and
+            principal-point coordinates are stored with each recording, and fixed focus keeps
+            camera calibration consistent.
+          </p>
+        </div>
+
         <table class="table is-fullwidth is-striped is-narrow">
+          <thead>
+            <tr><th>Stream</th><th>Format</th><th>Rate</th></tr>
+          </thead>
           <tbody>
-            <tr><td>Distance</td><td>&mdash;</td></tr>
-            <tr><td>Duration</td><td>&mdash;</td></tr>
-            <tr><td>Sessions</td><td>&mdash;</td></tr>
-            <tr><td>Locations</td><td>Two major US cities &mdash;
-                <a href="./coverage/">see the coverage map</a></td></tr>
-            <tr><td>Surface types</td><td>&mdash;</td></tr>
-            <tr><td>Operators</td><td>&mdash;</td></tr>
-            <tr><td>Times of day</td><td>&mdash;</td></tr>
-            <tr><td>Weather conditions</td><td>&mdash;</td></tr>
+            <tr><td>RGB</td><td>JPEG, 1280&times;720</td><td>30&nbsp;Hz</td></tr>
+            <tr><td>Depth + confidence</td><td>Temporally smoothed ARKit LiDAR, 256&times;192</td><td>30&nbsp;Hz</td></tr>
+            <tr><td>VIO pose</td><td>6-DoF, per-recording origin</td><td>30&nbsp;Hz</td></tr>
+            <tr><td>Inertial</td><td>Accelerometer + gyroscope</td><td>100&nbsp;Hz</td></tr>
+            <tr><td>GPS</td><td>Device fixes</td><td>&mdash;</td></tr>
+            <tr><td>Audio</td><td>Continuous</td><td>&mdash;</td></tr>
           </tbody>
         </table>
+        <p class="is-size-7 has-text-grey">
+          Low-confidence and out-of-range depth measurements are marked invalid before storage.
+          Device VIO is recorded for reference but is <em>not</em> the released trajectory source:
+          across the recorded VIO chunks spanning 10.8&nbsp;h, 34.9% produced motion inconsistent
+          with plausible human walking.
+        </p>
 
+        <h3 class="title is-5">3. Depth-anchored metric trajectories (DA3&nbsp;+&nbsp;Anchor)</h3>
         <div class="content has-text-justified">
           <p>
-            <a href="./coverage/">An interactive coverage map</a> shows every segment recorded on
-            foot, with carried transit legs excluded rather than smoothed over.
+            RGB recordings are reconstructed offline with Depth Anything 3 in 48-frame windows at
+            4&nbsp;Hz (&asymp;12&nbsp;s) with 12-frame (3&nbsp;s) overlap. Consecutive windows are
+            similarity-aligned over their overlapping frames and chained into a common relative
+            frame, with inconsistent joins rejected on RMS pose disagreement. Learned depth and
+            camera translation are only defined up to scale, so each chained segment is pinned to
+            metres by the phone's co-registered LiDAR depth: a robust per-frame scale ratio is
+            computed over valid pixels and its median taken across the segment.
           </p>
-        </div>
-
-        <h3 class="title is-4">Sample sessions</h3>
-        <div class="content has-text-justified">
           <p>
-            Each session below shows the RGB stream, the LiDAR depth stream, and the recovered
-            metric waypoints overlaid on the trajectory. Faces and license plates are blurred; the
-            blurring is automated and misses some truncated, occluded, and side-profile faces.
+            Segments without sufficient metric support are rejected outright rather than assigned
+            a forced scale. That removes 8.3% of candidate segments &mdash; mostly camera occlusion
+            or the rollator being transported rather than pushed &mdash; so the scale anchor
+            doubles as a quality filter on the released data. Future poses are then expressed
+            relative to the current observation and exported as metric trajectory targets paired
+            with visual goals.
           </p>
         </div>
       </div>
     </div>
-  </div>
+    <!--/ System. -->
 
-  <!-- Sample sessions carousel, full-bleed like the template's results carousel. -->
-  <div class="hero-body">
-    <div class="container">
-      <!-- TODO: replace with three to five real sessions. -->
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-session-01">
-          <video poster="" id="session-01" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/session_01.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-session-02">
-          <video poster="" id="session-02" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/session_02.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-session-03">
-          <video poster="" id="session-03" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/session_03.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
+    <!-- Hardware. Kept next to the system description because the paper points readers
+         here for the bill of materials. -->
+    <div class="columns is-centered" id="bom">
       <div class="column is-full-width">
-        <!-- Downloadable subset. Add the button here once a subset is actually ready to serve;
-             a reviewer who can open real data trusts the corpus far more than one reading a
-             table. Host the file in this repo or on an anonymous host, and strip metadata first. -->
-      </div>
-    </div>
-    <!--/ Dataset. -->
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <!-- Deployment. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">On-robot deployment</h2>
-        <div class="content has-text-justified">
-          <p>
-            A policy trained on <span class="dnerf">UNI-Sidewalk</span> running on a physical robot.
-            This is a feasibility demonstration that the recovered waypoints transfer to a robot,
-            not a benchmark: there is no baseline comparison and no success-rate claim here.
-          </p>
-        </div>
-
-        <div class="columns is-centered">
-          <div class="column">
-            <div class="content">
-              <h3 class="title is-5">Wheelchair base</h3>
-              <!-- TODO: replace with the real deployment video. -->
-              <video id="deploy-wheelchair" controls muted loop playsinline width="100%">
-                <source src="./static/videos/deploy_wheelchair.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="column">
-            <div class="content">
-              <h3 class="title is-5">Quadruped</h3>
-              <!-- TODO: replace, or delete this column if quadruped footage is not cleared. -->
-              <video id="deploy-quadruped" controls muted loop playsinline width="100%">
-                <source src="./static/videos/deploy_quadruped.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/ Deployment. -->
-
-    <!-- Hardware. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Hardware</h2>
-        <div class="content has-text-justified">
-          <p>
-            <!-- TODO: one or two sentences on the build. Total cost goes here once confirmed. -->
-          </p>
-        </div>
-
-        <div class="columns is-centered">
-          <div class="column is-half">
-            <!-- TODO: replace with a hardware photo shot against a neutral background.
-                 Do not reuse a photo taken inside the lab. -->
-            <img src="./static/images/hardware.jpg"
-                 alt="The instrumented rollator walker."/>
-          </div>
-        </div>
-
-        <!-- Bill of materials. -->
-        <h3 class="title is-4">Bill of materials</h3>
+        <h2 class="title is-3">Hardware and bill of materials</h2>
         <div class="content has-text-justified">
           <p>
             Every part is off-the-shelf and needs no machining or custom electronics. The
@@ -333,7 +271,8 @@
             </tr>
             <tr>
               <td>Smartphone (RGB + LiDAR)</td>
-              <td>Consumer smartphone with a rear LiDAR scanner</td>
+              <td>Consumer smartphone with a rear LiDAR scanner; an iPhone 16 Pro was used
+                  throughout for consistency</td>
               <td>Operator-supplied</td>
             </tr>
             <tr>
@@ -343,11 +282,82 @@
             </tr>
           </tbody>
         </table>
-        <!--/ Bill of materials. -->
+        <p class="is-size-7 has-text-grey">
+          Assembly takes about 30 minutes. No 3D-printed parts, no custom brackets, no soldering.
+        </p>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <!-- TODO: replace with a hardware photo shot against a neutral background.
+                 Do not reuse a photo taken inside the lab. -->
+            <img src="./static/images/hardware.jpg"
+                 alt="The instrumented rollator walker."/>
+          </div>
+        </div>
       </div>
     </div>
     <!--/ Hardware. -->
 
+  </div>
+</section>
+
+
+<section class="section" id="dataset">
+  <div class="container is-max-desktop">
+
+    <!-- Dataset. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">The UNI dataset</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            An egocentric, rollator-constrained navigation corpus recorded in public pedestrian
+            space: crowded sidewalks, building entrances, transit interfaces, wet pavement, and
+            construction-constrained walkways. It keeps the parts of navigation that are usually
+            filtered out &mdash; waiting at crossings, yielding to pedestrians, stop&ndash;resume
+            transitions &mdash; because those are supervision too.
+          </p>
+        </div>
+
+        <table class="table is-fullwidth is-striped is-narrow">
+          <tbody>
+            <tr><td>Distance</td><td>37.2 km</td></tr>
+            <tr><td>Recording time</td><td>10.8 h</td></tr>
+            <tr><td>Sessions</td><td>87</td></tr>
+            <tr><td>Operators</td><td>6</td></tr>
+            <tr><td>Locations</td><td>Three cities in the United States</td></tr>
+            <tr><td>Collection period</td><td>Intermittently, April&ndash;August 2026; collection is ongoing</td></tr>
+            <tr><td>Near-stationary windows</td><td>8.14%</td></tr>
+            <tr><td>Model-ready export</td><td>1,087 trajectories, 117,512 frames at &asymp;4 Hz</td></tr>
+            <tr><td>Surface types</td><td>Concrete sidewalks, brick and tactile paving, asphalt
+                paths and roads, gravel, cobblestone, boardwalks, dirt, grass, sand, carpet, tile,
+                terrazzo, with examples of wet pavement</td></tr>
+            <tr><td>Also captured</td><td>Transit by train and elevator, yielding to pedestrians,
+                waiting at crosswalks</td></tr>
+          </tbody>
+        </table>
+        <p class="is-size-7 has-text-grey">
+          The initial collection target was 10 h, set to evaluate the pipeline and its utility for
+          navigation learning. Two UNI systems are now in use for parallel collection, so the
+          released corpus is expected to extend beyond this snapshot. Every result on this page
+          uses the fixed snapshot above. A window counts as near-stationary when its cumulative
+          2-D path length over five consecutive frame-to-frame steps is below 0.25&nbsp;m; on that
+          same criterion EgoWalk is 3.10% and SCAND 0.25%.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- Downloadable subset. Add the button here once a subset is actually ready to serve;
+             a reviewer who can open real data trusts the corpus far more than one reading a
+             table. Host the file in this repo or on an anonymous host, and strip metadata first. -->
+      </div>
+    </div>
+    <!--/ Dataset. -->
   </div>
 </section>
 
@@ -366,16 +376,7 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
+            This website is borrowed from <a href="https://github.com/google/nerfies">nerfies</a>.
           </p>
         </div>
       </div>

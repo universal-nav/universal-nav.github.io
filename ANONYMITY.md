@@ -13,6 +13,10 @@ when in doubt, leave it out and restore it in the camera-ready.
 - An acknowledgements section
 - Faces of team members, lab signage, whiteboards, name badges, building
   interiors, screens showing logged-in accounts
+- Maps, GPS traces, or any other geographic rendering of where the corpus was
+  collected. A coverage map was built and then removed for this reason: a
+  per-session track layer names the metros outright and narrows the collectors
+  to whoever works near those blocks, which no amount of smoothing undoes
 
 ## Before publishing
 
@@ -31,8 +35,13 @@ when in doubt, leave it out and restore it in the camera-ready.
 - [ ] No analytics, no trackers, no third-party embeds or CDNs
 - [ ] `git log --format='%an %ae'` shows only anonymous values
 - [ ] Deployed URL contains no identifying string
-- [ ] Any linked PDF has its document properties stripped (LaTeX embeds author
-      and institution fields)
+- [ ] Any linked PDF has its document properties stripped with
+      `tools/scrub-pdf.py`, verified with `pdfinfo` (LaTeX embeds author and
+      institution fields, and pdfTeX leaves a version banner and build
+      timestamps even when those come out empty)
+- [ ] Every figure inside a linked PDF read at full zoom for incidental
+      identifying content: legible shop or street signage, transit branding,
+      and on-screen GPS coordinates in any app screenshot
 - [ ] Final pass: open the site in a private window and read it as a hostile
       reviewer actively trying to identify the authors
 
