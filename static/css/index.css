@@ -182,3 +182,12 @@ p.is-size-7.has-text-grey {
   display: inline-block;
   margin: 0 0.25rem;
 }
+
+
+/* Foxglove clip. Its topics sidebar is near-white, so against a white page the
+   left ~25% of the frame reads as background and the video looks shoved right of
+   the centred heading above it. A border makes the real extent visible. */
+#foxglove-video {
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+}
