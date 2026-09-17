@@ -74,8 +74,7 @@
               <p>
                 The collection app source, the data-processing pipeline, the trained model
                 weights, and the privacy-processed dataset are withheld while the paper is under
-                review, since releasing them now would identify the authors. All four will be
-                released once the review process concludes.
+                review. All four will be released once the review process concludes.
               </p>
             </div>
           </div>
@@ -134,21 +133,29 @@
     </div>
     <!--/ Abstract. -->
 
-    <!-- Method video. -->
+    <!-- Foxglove glimpse. Note: the Map panel names the streets and transit stop of the
+         recording site at this zoom. Kept visible at the author's request. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
+        <h2 class="title is-3">A recorded session</h2>
         <div class="content">
-          <!-- TODO: replace with the real method video. Local file, not a YouTube embed:
-               an embed logs every reviewer's request to a third party. -->
-          <video id="method-video" controls muted playsinline width="100%">
-            <source src="./static/videos/method.mp4"
+          <video id="foxglove-video" controls muted loop playsinline preload="metadata"
+                 width="100%" poster="./static/images/foxglove_poster.jpg">
+            <source src="./static/videos/foxglove.mp4"
                     type="video/mp4">
           </video>
+          <p class="has-text-justified">
+            Sessions are recorded on SensorVault straight to <a
+              href="https://mcap.dev/">MCAP</a>. That is the format that comes off the device, so
+            a recording is readable by any MCAP viewer as-is &mdash; Foxglove above. Camera, LiDAR
+            depth, IMU, GPS, audio, odometry and transforms play back together on one clock with
+            no conversion step, no post-processing pass, and nothing to time-sync after the fact.
+          </p>
         </div>
       </div>
     </div>
-    <!--/ Method video. -->
+    <!--/ Foxglove glimpse. -->
+
   </div>
 </section>
 
@@ -286,17 +293,8 @@
           Assembly takes about 30 minutes. No 3D-printed parts, no custom brackets, no soldering.
         </p>
 
-        <div class="columns is-centered">
-          <div class="column is-half">
-            <!-- TODO: replace with a hardware photo shot against a neutral background.
-                 Do not reuse a photo taken inside the lab. -->
-            <img src="./static/images/hardware.jpg"
-                 alt="The instrumented rollator walker."/>
-          </div>
-        </div>
-
-        <!-- Assembly walkthrough. Local file for the same reason as the method video:
-             an embed would log every reviewer's request to a third party. -->
+        <!-- Assembly walkthrough. Local file, not a YouTube embed: an embed would log
+             every reviewer's request to a third party. -->
         <h3 class="title is-4">Assembly</h3>
         <div class="content">
           <video id="assembly-video" controls muted playsinline preload="metadata" width="100%"
