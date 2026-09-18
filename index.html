@@ -364,24 +364,39 @@
 </section>
 
 
-<!-- Offline evaluation. Sits before the hardware runs: this is replayed footage with
-     both policies conditioned on the same registered site goal, not a live run. -->
+<!-- Offline evaluation. Same organisation as the hardware runs below: heading, then a
+     .carousel in a is-10 column. One slide at a time via data-slides-to-show, because
+     these renders are 2.2:1 and the plot is unreadable at the global two-up. The
+     attribute's string value only breaks the library's centerMode path, which is off. -->
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Offline evaluation</h2>
-        <div class="content">
-          <video id="offline-curb-video" controls muted loop playsinline preload="metadata"
-                 width="100%" poster="./static/images/offline_curb_compare_poster.jpg">
-            <source src="./static/videos/offline_curb_compare.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="has-text-justified">
-            Both policies see the same observation and the same goal image, which sits off to the
-            left. The released ViNT checkpoint turns toward it as soon as the curb ramp comes into
-            view; ours holds a straight path and only begins turning once it reaches the curb edge.
-          </p>
+    <h2 class="title is-3 has-text-centered">Offline evaluation</h2>
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div id="offline-carousel" class="carousel results-carousel" data-slides-to-show="1">
+          <div class="item">
+            <video poster="./static/images/offline_curb_compare_poster.jpg" id="offline-curb-video"
+                   controls muted loop playsinline preload="metadata" width="100%">
+              <source src="./static/videos/offline_curb_compare.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption">Both policies are conditioned on the same goal image, recorded
+            off to the left. The released ViNT checkpoint turns toward it as soon as the curb ramp
+            comes into view; ours holds a straight path and only begins turning once it reaches the
+            curb edge.</p>
+          </div>
+          <div class="item">
+            <video poster="./static/images/offline_crossing_hold_poster.jpg"
+                   id="offline-crossing-video"
+                   controls muted loop playsinline preload="metadata" width="100%">
+              <source src="./static/videos/offline_crossing_hold.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption">At a crossing, ours holds at a standstill while pedestrians pass
+            and resumes once they clear; the released checkpoint keeps predicting forward motion
+            throughout. Frames are blurred for release &mdash; the policy ran on the unmodified
+            frames &mdash; and the goal is set by an external supervisor, not by the policy.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -398,7 +413,7 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Hardware runs</h2>
 
-      <h3 class="title is-4 has-text-centered">UNI finetuned on ViNT</h3>
+      <h3 class="title is-4 has-text-centered">ViNT finetuned on UNI</h3>
       <div class="columns is-centered">
         <div class="column is-10">
         <div id="ours-carousel" class="carousel results-carousel">
