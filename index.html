@@ -73,8 +73,8 @@
             <div class="content">
               <p>
                 The collection app source, the data-processing pipeline, the trained model
-                weights, and the privacy-processed dataset are withheld while the paper is under
-                review. All four will be released once the review process concludes.
+                weights, and the privacy-processed dataset are not public yet. All four will be
+                released once the review process concludes.
               </p>
             </div>
           </div>
@@ -219,21 +219,11 @@
         <h3 class="title is-5">3. Depth-anchored metric trajectories (DA3&nbsp;+&nbsp;Anchor)</h3>
         <div class="content has-text-justified">
           <p>
-            RGB recordings are reconstructed offline with Depth Anything 3 in 48-frame windows at
-            4&nbsp;Hz (&asymp;12&nbsp;s) with 12-frame (3&nbsp;s) overlap. Consecutive windows are
-            similarity-aligned over their overlapping frames and chained into a common relative
-            frame, with inconsistent joins rejected on RMS pose disagreement. Learned depth and
-            camera translation are only defined up to scale, so each chained segment is pinned to
-            metres by the phone's co-registered LiDAR depth: a robust per-frame scale ratio is
-            computed over valid pixels and its median taken across the segment.
-          </p>
-          <p>
-            Segments without sufficient metric support are rejected outright rather than assigned
-            a forced scale. That removes 8.3% of candidate segments &mdash; mostly camera occlusion
-            or the rollator being transported rather than pushed &mdash; so the scale anchor
-            doubles as a quality filter on the released data. Future poses are then expressed
-            relative to the current observation and exported as metric trajectory targets paired
-            with visual goals.
+            RGB recordings are reconstructed offline with Depth Anything 3 and chained into a
+            common relative frame. Learned depth is defined only up to scale, so each segment is
+            pinned to metres by the phone's co-registered LiDAR depth; segments without enough
+            metric support are rejected rather than forced. Future poses are exported as metric
+            trajectory targets paired with visual goals.
           </p>
         </div>
       </div>
@@ -247,13 +237,9 @@
         <h2 class="title is-3">Hardware and bill of materials</h2>
         <div class="content has-text-justified">
           <p>
-            Every part is off-the-shelf and needs no machining or custom electronics. The
-            smartphone is whatever LiDAR-equipped handset the operator already carries, so it is
-            listed as a build requirement but left out of the total: the figure below is what it
-            costs to turn a phone you own into a capture rig. Product links are stripped of
-            tracking parameters and point at the bare catalogue entry. Listed prices are what each
-            listing showed on <time datetime="2026-09-12">12 September 2026</time>, before tax and
-            shipping; they are a snapshot, not a quote, and retail prices move.
+            Every part is off-the-shelf and needs no machining or custom electronics. Prices are
+            what each listing showed on <time datetime="2026-09-12">12 September 2026</time>,
+            before tax and shipping.
           </p>
         </div>
 
@@ -307,36 +293,6 @@
             Faces and the background are blurred to preserve the anonymity of this submission &mdash;
             the hardware and the assembly steps themselves are unmodified.
           </p>
-        </div>
-
-        <h3 class="title is-4">Powered wheelchair</h3>
-        <div class="content">
-          <p>
-            Three runs on the powered wheelchair: a curb, a curb climb, and a staircase. Each clip
-            keeps the onboard-view inset and the overlay panel from the original render. Faces are
-            blurred.
-          </p>
-
-          <video id="deploy-curb-video" controls muted playsinline preload="metadata" width="100%"
-                 poster="./static/images/deploy_curb_poster.jpg">
-            <source src="./static/videos/deploy_curb.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="is-size-7 has-text-grey">Curb.</p>
-
-          <video id="deploy-curb-climb-video" controls muted playsinline preload="metadata"
-                 width="100%" poster="./static/images/deploy_curb_climb_poster.jpg">
-            <source src="./static/videos/deploy_curb_climb.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="is-size-7 has-text-grey">Curb climb.</p>
-
-          <video id="deploy-stairs-video" controls muted playsinline preload="metadata"
-                 width="100%" poster="./static/images/deploy_stairs_poster.jpg">
-            <source src="./static/videos/deploy_stairs.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="is-size-7 has-text-grey">Staircase.</p>
         </div>
       </div>
     </div>
@@ -404,6 +360,43 @@
     <!--/ Dataset. -->
   </div>
 </section>
+
+
+<!-- Hardware runs. bulma-carousel is already loaded in the head and index.js
+     attaches every .carousel. slidesToShow is set to 2 there rather than via
+     data-slides-to-show: dataset values are strings, and the lib adds slidesToShow to
+     itself in its centerMode path, where "2" would concatenate instead of add. -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Hardware runs</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video poster="./static/images/deploy_curb_poster.jpg" id="deploy-curb-video"
+                 autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/deploy_curb.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="./static/images/deploy_curb_climb_poster.jpg" id="deploy-curb-climb-video"
+                 autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/deploy_curb_climb.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="./static/images/deploy_stairs_poster.jpg" id="deploy-stairs-video"
+                 autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/deploy_stairs.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Hardware runs. -->
 
 
 <section class="section" id="BibTeX">
