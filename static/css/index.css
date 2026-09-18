@@ -209,9 +209,10 @@ p.is-size-7.has-text-grey {
   padding: 0.5rem 0.7rem 0.6rem;
   text-align: left;
   /* same caption box on every slide so all items are the same height and their
-     borders line up: a tag line (Bulma tags are 2em tall) plus two wrapped text
-     lines, plus the padding. The dots no longer need room in here. */
-  min-height: 4.8rem;
+     borders line up: a tag line (Bulma tags are 2em tall) plus three wrapped text
+     lines, plus the padding. Three, not two, because the slides are narrower now that
+     the carousel sits in a is-max-desktop container, so captions wrap sooner. */
+  min-height: 5.9rem;
 }
 
 /* Take the dots out of absolute positioning. Left as position: absolute; bottom: 0
