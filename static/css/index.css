@@ -119,12 +119,18 @@ body {
 }
 
 .results-carousel {
-  /* overflow must stay visible so the dots, which now flow below the slides, are not
-     clipped by the inline pixel height bulma-carousel sets on this element. Slides
-     themselves are still clipped by .slider-container, which has its own
-     overflow: hidden. */
-  overflow: visible;
+  /* must clip: without it the slider lays its slides out at full viewport width and
+     they bleed past the container on both sides. */
+  overflow: hidden;
   margin-bottom: 2rem;
+}
+
+/* Room under each slide for the pagination dots. The dots are absolutely positioned
+   against the slider's bottom edge, so shortening the items with a bottom margin is
+   what keeps them off the borders -- padding on the slider cannot do it, because the
+   library sets that element's height inline in px and Bulma sizes with border-box. */
+.results-carousel .item {
+  margin-bottom: 1.9rem;
 }
 
 .results-carousel .item {
@@ -215,14 +221,9 @@ p.is-size-7.has-text-grey {
   min-height: 5.9rem;
 }
 
-/* Take the dots out of absolute positioning. Left as position: absolute; bottom: 0
-   they sit on the items' bottom border: the containing block is this element's padding
-   box, and its height is set inline in px by the library, so padding cannot open a
-   gutter underneath. Flowing them instead puts them clear of every border. */
+/* Dots sit in the margin gap below the items. */
 .results-carousel .slider-pagination {
-  position: static;
-  margin-top: 0.6rem;
-  padding: 0;
+  padding: 0 1rem 0.25rem;
 }
 
 

@@ -399,71 +399,79 @@
       <h2 class="title is-3 has-text-centered">Hardware runs</h2>
 
       <h3 class="title is-4 has-text-centered">UNI finetuned on ViNT</h3>
-      <div id="ours-carousel" class="carousel results-carousel">
-        <div class="item run-ok">
-          <video poster="./static/images/ours_curb_poster.jpg" id="ours-curb-video"
-                 autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/ours_curb.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="run-caption"><span class="tag is-success is-light">Success</span> Curb cut on a loading-dock apron.</p>
+      <div class="columns is-centered">
+        <div class="column is-10">
+        <div id="ours-carousel" class="carousel results-carousel">
+          <div class="item run-ok">
+            <video poster="./static/images/ours_curb_poster.jpg" id="ours-curb-video"
+                   controls muted loop playsinline preload="metadata" height="100%">
+              <source src="./static/videos/ours_curb.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption"><span class="tag is-success is-light">Success</span> Curb cut on a loading-dock apron.</p>
+          </div>
+          <div class="item run-ok">
+            <video poster="./static/images/ours_curb_climb_poster.jpg" id="ours-curb-climb-video"
+                   controls muted loop playsinline preload="metadata" height="100%">
+              <source src="./static/videos/ours_curb_climb.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption"><span class="tag is-success is-light">Success</span> Ramped curb along a bollard-lined walkway.</p>
+          </div>
+          <div class="item run-ok">
+            <video poster="./static/images/ours_stairs_poster.jpg" id="ours-stairs-video"
+                   controls muted loop playsinline preload="metadata" height="100%">
+              <source src="./static/videos/ours_stairs.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption"><span class="tag is-success is-light">Success</span> Exterior stair flight with handrail.</p>
+          </div>
+          <!-- Replay, not a hardware run: per the clip's notes both traces are the released
+               ViNT policy (the gate scales speed_scale only) and curb_enabled is false in the
+               shipped config. The caption says so; keep it that way. -->
+          <div class="item run-fail">
+            <video poster="./static/images/curb_gate_replay_poster.jpg" id="curb-gate-video"
+                   controls muted loop playsinline preload="metadata" height="100%">
+              <source src="./static/videos/curb_gate_replay.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption"><span class="tag is-danger is-light">Failure</span> Commanded
+            speed falls to 0.13&nbsp;m/s as the step closes but never reaches a stop. The halt on
+            screen is the operator's e-stop.</p>
+          </div>
         </div>
-        <div class="item run-ok">
-          <video poster="./static/images/ours_curb_climb_poster.jpg" id="ours-curb-climb-video"
-                 autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/ours_curb_climb.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="run-caption"><span class="tag is-success is-light">Success</span> Ramped curb along a bollard-lined walkway.</p>
-        </div>
-        <div class="item run-ok">
-          <video poster="./static/images/ours_stairs_poster.jpg" id="ours-stairs-video"
-                 autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/ours_stairs.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="run-caption"><span class="tag is-success is-light">Success</span> Exterior stair flight with handrail.</p>
-        </div>
-        <!-- Replay, not a hardware run: per the clip's notes both traces are the released
-             ViNT policy (the gate scales speed_scale only) and curb_enabled is false in the
-             shipped config. The caption says so; keep it that way. -->
-        <div class="item run-fail">
-          <video poster="./static/images/curb_gate_replay_poster.jpg" id="curb-gate-video"
-                 autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/curb_gate_replay.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="run-caption"><span class="tag is-danger is-light">Failure</span> Commanded
-          speed falls to 0.13&nbsp;m/s as the step closes but never reaches a stop. The halt on
-          screen is the operator's e-stop.</p>
         </div>
       </div>
 
       <h3 class="title is-4 has-text-centered mt-6">ViNT release</h3>
-      <div id="theirs-carousel" class="carousel results-carousel">
-        <div class="item run-fail">
-          <video poster="./static/images/theirs_curb_poster.jpg" id="theirs-curb-video"
-                 autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/theirs_curb.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="run-caption"><span class="tag is-danger is-light">Failure</span> Curb cut on a loading-dock apron.</p>
+      <div class="columns is-centered">
+        <div class="column is-10">
+        <div id="theirs-carousel" class="carousel results-carousel">
+          <div class="item run-fail">
+            <video poster="./static/images/theirs_curb_poster.jpg" id="theirs-curb-video"
+                   controls muted loop playsinline preload="metadata" height="100%">
+              <source src="./static/videos/theirs_curb.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption"><span class="tag is-danger is-light">Failure</span> Curb cut on a loading-dock apron.</p>
+          </div>
+          <div class="item run-ok">
+            <video poster="./static/images/theirs_curb_climb_poster.jpg" id="theirs-curb-climb-video"
+                   controls muted loop playsinline preload="metadata" height="100%">
+              <source src="./static/videos/theirs_curb_climb.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption"><span class="tag is-success is-light">Success</span> Ramped curb along a bollard-lined walkway.</p>
+          </div>
+          <div class="item run-fail">
+            <video poster="./static/images/theirs_stairs_poster.jpg" id="theirs-stairs-video"
+                   controls muted loop playsinline preload="metadata" height="100%">
+              <source src="./static/videos/theirs_stairs.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="run-caption"><span class="tag is-danger is-light">Failure</span> Exterior stair flight with handrail.</p>
+          </div>
         </div>
-        <div class="item run-ok">
-          <video poster="./static/images/theirs_curb_climb_poster.jpg" id="theirs-curb-climb-video"
-                 autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/theirs_curb_climb.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="run-caption"><span class="tag is-success is-light">Success</span> Ramped curb along a bollard-lined walkway.</p>
-        </div>
-        <div class="item run-fail">
-          <video poster="./static/images/theirs_stairs_poster.jpg" id="theirs-stairs-video"
-                 autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/theirs_stairs.mp4"
-                    type="video/mp4">
-          </video>
-          <p class="run-caption"><span class="tag is-danger is-light">Failure</span> Exterior stair flight with handrail.</p>
         </div>
       </div>
 
